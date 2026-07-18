@@ -12,8 +12,8 @@
   --parchment:#F3EAD3; --paper:#FBF6E9; --card:#F8F1DF;
   --teal:#3F7E6B; --teal-dk:#2C5A4C; --teal-wash:#E4EFEA;
   --terra:#BC4B33; --ink:#2B2620; --muted:#7A7263;
-  --line:#D8CCAE; --line-soft:#E0D2B2; --gold:#C9A869;
-  --rack-w:264px; --bar-h:52px;
+  --line:#D8CCAE; --line-soft:#E0D2B2; --gold:#C9A869; --faint:#A39781;
+  --rack-w:278px; --bar-h:52px;
   --serif:"Noto Serif SC","Songti SC",serif;
   --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
 }
@@ -41,26 +41,45 @@ a{color:inherit}
 .brand .tagline{
   margin-top:7px; font-size:11px; color:var(--muted); letter-spacing:.05em;
 }
-#racknav{flex:1; overflow-y:auto; padding:10px 0 14px}
-.g-label{
-  display:flex; align-items:baseline; gap:8px;
-  padding:16px 18px 7px; font-size:12px; font-weight:700;
-  color:var(--teal-dk); letter-spacing:.12em;
+#racknav{
+  flex:1; overflow-y:auto; padding:6px 0 14px;
+  scrollbar-width:thin; scrollbar-color:var(--line) transparent;
 }
-.g-label .gnum{font-family:var(--mono); font-size:10px; color:var(--gold); font-weight:600}
+#racknav::-webkit-scrollbar{width:8px}
+#racknav::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px; border:2px solid var(--paper)}
+#racknav::-webkit-scrollbar-track{background:transparent}
+.g-block{margin-top:14px}
+#racknav .g-head{
+  display:flex; align-items:center; gap:9px;
+  margin:0 14px 5px; padding:10px 3px;
+  border-bottom:1px solid var(--line-soft);
+}
+.g-mark{
+  width:7px; height:7px; flex:0 0 auto;
+  background:var(--ga,var(--teal)); transform:rotate(45deg);
+}
+#racknav .g-name{
+  font-size:15.5px; font-weight:900; letter-spacing:.1em;
+  color:var(--ink); line-height:1.3;
+}
+#racknav .g-count{
+  margin-left:auto; font-family:var(--mono);
+  font-size:10px; letter-spacing:.08em; color:var(--faint);
+}
 .navitem{
-  display:flex; align-items:baseline; gap:9px; width:100%;
-  padding:8px 18px 8px 16px; border:0; border-left:3px solid transparent;
+  display:flex; align-items:baseline; gap:10px; width:100%;
+  padding:9px 18px 9px 15px; border:0; border-left:3px solid transparent;
   background:none; text-align:left; cursor:pointer; text-decoration:none;
-  font-family:var(--serif); font-size:14px; font-weight:600; color:var(--ink);
-  line-height:1.45; transition:background .15s,border-color .15s;
+  font-family:var(--serif); font-size:14.5px; font-weight:600; color:var(--ink);
+  line-height:1.5; transition:background .15s,border-color .15s,color .15s;
 }
-.navitem .idx{font-family:var(--mono); font-size:10px; color:var(--gold); flex:0 0 auto; transform:translateY(-1px)}
-.navitem:hover{background:var(--teal-wash)}
+.navitem .idx{font-family:var(--mono); font-size:10px; color:var(--faint); flex:0 0 auto; transform:translateY(-1px)}
+.navitem.home{margin:6px 0 2px}
+.navitem:hover{background:var(--gw,var(--teal-wash)); border-left-color:var(--ga,var(--teal))}
 .navitem[aria-current="page"]{
-  background:var(--teal); border-left-color:var(--terra); color:var(--paper);
+  background:var(--gd,var(--teal-dk)); border-left-color:var(--ga,var(--teal)); color:var(--paper);
 }
-.navitem[aria-current="page"] .idx{color:var(--parchment)}
+.navitem[aria-current="page"] .idx{color:var(--parchment); opacity:.8}
 .rackfoot{
   padding:12px 18px; border-top:1px solid var(--line);
   font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--muted);
@@ -111,12 +130,11 @@ body.in-tool .toolonly{display:inline-block}
 .hero p{font-size:14px; line-height:1.9; color:var(--muted); max-width:760px}
 .hero p b{color:var(--teal-dk); font-weight:700}
 
-.group{max-width:1060px; margin:34px auto 0}
-.g-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding-bottom:9px; border-bottom:3px double var(--line)}
-.g-head .gnum{font-family:var(--mono); font-size:11px; color:var(--gold)}
-.g-head h3{font-size:17px; font-weight:700; letter-spacing:.06em}
-.g-head .note{font-size:12px; color:var(--muted)}
-.g-head .note em{font-style:normal; color:var(--terra); font-weight:600}
+.group{max-width:1060px; margin:36px auto 0}
+.group .g-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding-bottom:10px; border-bottom:3px double var(--line)}
+.group h3{font-size:19px; font-weight:900; letter-spacing:.08em}
+.group .note{font-size:12px; color:var(--muted)}
+.group .note em{font-style:normal; color:var(--terra); font-weight:600}
 .cards{
   display:grid; grid-template-columns:repeat(auto-fill,minmax(302px,1fr));
   gap:14px; padding-top:16px;
@@ -126,7 +144,7 @@ body.in-tool .toolonly{display:inline-block}
   padding:16px 17px 13px; display:flex; flex-direction:column; gap:9px;
   transition:border-color .15s, box-shadow .15s, transform .15s;
 }
-.card:hover{border-color:var(--teal); box-shadow:0 3px 0 rgba(63,126,107,.22); transform:translateY(-1px)}
+.card:hover{border-color:var(--ga,var(--teal)); box-shadow:0 3px 0 rgba(43,38,32,.10); transform:translateY(-1px)}
 .card .meta{display:flex; justify-content:space-between; align-items:baseline; gap:8px}
 .card .fn{font-family:var(--mono); font-size:10px; letter-spacing:.18em; color:var(--terra)}
 .card .idx{font-family:var(--mono); font-size:10px; color:var(--gold)}
@@ -141,8 +159,8 @@ body.in-tool .toolonly{display:inline-block}
   margin-top:auto; padding-top:10px; border-top:1px solid var(--line-soft);
   display:flex; justify-content:space-between; align-items:center; font-size:12.5px;
 }
-.card .go{color:var(--teal-dk); font-weight:700}
-.card:hover .go{color:var(--teal)}
+.card .go{color:var(--gd,var(--teal-dk)); font-weight:700}
+.card:hover .go{color:var(--ga,var(--teal))}
 .card .ext{
   position:relative; z-index:2; text-decoration:none;
   font-family:var(--mono); font-size:11px; color:var(--muted);
@@ -288,9 +306,12 @@ const TOOLS = [
   sub:"《计算广告》（刘鹏 · 王超，第 3 版）的底层逻辑：对 eCPM 的因子分解逐层下行——对每个因子追问三问：谁估计（分工）· 怎样说真话（机制）· 怎样估准（技术）。下行五层即这三问的演绎展开。"}
 ];
 const GROUPS = [
- {num:"壹", title:"运营链路", note:'五件套链路：<em>尽调 → 发射 → 守成 → 预测 → 关键词</em>（末站见下一组）', idx:[0,1,2,3]},
- {num:"贰", title:"关键词工程", note:'预测台管数量，这两台管「动作」：结构归因 × 词表工程，解析全程在本地浏览器完成', idx:[4,5]},
- {num:"叁", title:"广告体系", note:'从课程原理到实验操作，再压缩为两张底层逻辑全景图', idx:[6,7,8,9]}
+ {title:"运营链路", ga:"#3F7E6B", gd:"#2C5A4C", gw:"#E4EFEA",
+  note:'五件套链路：<em>尽调 → 发射 → 守成 → 预测 → 关键词</em>（末站见下一组）', idx:[0,1,2,3]},
+ {title:"关键词工程", ga:"#A9853C", gd:"#856727", gw:"#F0E6C9",
+  note:'预测台管数量，这两台管「动作」：结构归因 × 词表工程，解析全程在本地浏览器完成', idx:[4,5]},
+ {title:"广告体系", ga:"#BC4B33", gd:"#9A3A26", gw:"#F3DED5",
+  note:'从课程原理到实验操作，再压缩为两张底层逻辑全景图', idx:[6,7,8,9]}
 ];
 
 /* ════════ 渲染：仪器架 + 总览卡片 ════════ */
@@ -298,25 +319,26 @@ const pad = n => String(n+1).padStart(2,"0");
 const racknav = document.getElementById("racknav");
 const groupsEl = document.getElementById("groups");
 const home = document.createElement("a");
-home.className = "navitem"; home.href = "#/"; home.dataset.dir = "";
+home.className = "navitem home"; home.href = "#/"; home.dataset.dir = "";
 home.innerHTML = `<span class="idx">00</span><span>总览</span>`;
 racknav.appendChild(home);
 GROUPS.forEach(g=>{
-  const lab = document.createElement("div");
-  lab.className = "g-label";
-  lab.innerHTML = `<span class="gnum">${g.num}</span>${g.title}`;
-  racknav.appendChild(lab);
+  const vars = `--ga:${g.ga};--gd:${g.gd};--gw:${g.gw}`;
+  const blk = document.createElement("div");
+  blk.className = "g-block"; blk.style.cssText = vars;
+  blk.innerHTML = `<div class="g-head"><span class="g-mark"></span><span class="g-name">${g.title}</span><span class="g-count">${g.idx.length} 台</span></div>`;
   g.idx.forEach(i=>{
     const t = TOOLS[i];
     const a = document.createElement("a");
     a.className = "navitem"; a.href = "#/"+t.dir; a.dataset.dir = t.dir;
     a.innerHTML = `<span class="idx">${pad(i)}</span><span>${t.name}</span>`;
-    racknav.appendChild(a);
+    blk.appendChild(a);
   });
+  racknav.appendChild(blk);
 
   const sec = document.createElement("section");
-  sec.className = "group";
-  sec.innerHTML = `<div class="g-head"><span class="gnum">${g.num}</span><h3>${g.title}</h3><span class="note">${g.note}</span></div>`;
+  sec.className = "group"; sec.style.cssText = vars;
+  sec.innerHTML = `<div class="g-head"><span class="g-mark"></span><h3>${g.title}</h3><span class="note">${g.note}</span></div>`;
   const grid = document.createElement("div");
   grid.className = "cards";
   g.idx.forEach(i=>{
