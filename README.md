@@ -4,6 +4,7 @@
 
 | 内容 | 访问链接 |
 | --- | --- |
+| 亚马逊工具 · 综合工作台（总入口） | https://cavno.github.io/Working/Amazon_Tools/ |
 | 市场调研（市场尽调记分卡台） | https://cavno.github.io/Working/Amazon_Tools/market_diligence_scorecard/ |
 | 新品推广（新品发射控制台） | https://cavno.github.io/Working/Amazon_Tools/launch_control_console/ |
 | 老品推广（老品资产管理台） | https://cavno.github.io/Working/Amazon_Tools/mature_asset_console/ |
